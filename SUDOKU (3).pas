@@ -391,8 +391,6 @@ begin
 			writeln('----------------------------------------');
 			writeln('Gracias por su visita, hasta pronto');
 			writeln('----------------------------------------');
-			inicioPistas(solucion, tablero);
-			mostrarTablero(solucion);
 		end;
   
   
