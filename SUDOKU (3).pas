@@ -13,12 +13,12 @@ type
 var
   tablero, solucion: matriz;
   pistasTablero: pistasT;
-  nombre, nick: string;
-  op : Integer;
+  nombre, nick, rendirse : string;
+  op: Integer;
 
 //CREAMOS PROCEDIMIENTO PARA MOSTRAR EL TABLERO
 
-procedure mostrarTablero(tablero, solucion: matriz);
+procedure mostrarTablero(matriz: matriz);
 var
 	i, j: integer;
 begin
@@ -99,9 +99,91 @@ begin
 	  tablero[9,2] := 7;
 	  tablero[9,3] := 5;
 	  tablero[9,4] := 2;
+	  begin
+	 solucion[1,1] := 2;
+	 solucion[1,2] := 5;
+	 solucion[1,3] := 7;
+	 solucion[1,4] := 8;
+	 solucion[1,5] := 4;
+	 solucion[1,6] := 1;
+	 solucion[1,7] := 6;
+	 solucion[1,8] := 9;
+	 solucion[1,9] := 3;
+	 solucion[2,1] := 6;
+	 solucion[2,2] := 4;
+	 solucion[2,3] := 9;
+	 solucion[2,4] := 5;
+	 solucion[2,5] := 3;
+	 solucion[2,6] := 7;
+	 solucion[2,7] := 2;
+	 solucion[2,8] := 8;
+	 solucion[2,9] := 1;
+	 solucion[3,1] := 3;
+	 solucion[3,2] := 1;
+	 solucion[3,3] := 8;
+	 solucion[3,4] := 6;
+	 solucion[3,5] := 2;
+	 solucion[3,6] := 9;
+	 solucion[3,7] := 5;
+	 solucion[3,8] := 4;
+	 solucion[3,9] := 7;
+	 solucion[4,1] := 5;
+	 solucion[4,2] := 9;
+	 solucion[4,3] := 2;
+	 solucion[4,4] := 1;
+	 solucion[4,5] := 7;
+	 solucion[4,6] := 6;
+	 solucion[4,7] := 8;
+	 solucion[4,8] := 3;
+	 solucion[4,9] := 4;
+	 solucion[5,1] := 7;
+	 solucion[5,2] := 8;
+	 solucion[5,3] := 4;
+	 solucion[5,4] := 3;
+	 solucion[5,5] := 9;
+	 solucion[5,6] := 5;
+	 solucion[5,7] := 1;
+	 solucion[5,8] := 2;
+	 solucion[5,9] := 6;
+	 solucion[6,1] := 1;
+	 solucion[6,2] := 3;
+	 solucion[6,3] := 6;
+	 solucion[6,4] := 4;
+	 solucion[6,5] := 8;
+	 solucion[6,6] := 2;
+	 solucion[6,7] := 9;
+	 solucion[6,8] := 7;
+	 solucion[6,9] := 5;
+	 solucion[7,1] := 4;
+	 solucion[7,2] := 6;
+	 solucion[7,3] := 3;
+	 solucion[7,4] := 9;
+	 solucion[7,5] := 1;
+	 solucion[7,6] := 8;
+	 solucion[7,7] := 7;
+	 solucion[7,8] := 5;
+	 solucion[7,9] := 2;
+	 solucion[8,1] := 9;
+	 solucion[8,2] := 2;
+	 solucion[8,3] := 1;
+	 solucion[8,4] := 7;
+	 solucion[8,5] := 5;
+	 solucion[8,6] := 4;
+	 solucion[8,7] := 3;
+	 solucion[8,8] := 6;
+	 solucion[8,9] := 8;
+	 solucion[9,1] := 8;
+	 solucion[9,2] := 7;
+	 solucion[9,3] := 5;
+	 solucion[9,4] := 2;
+	 solucion[9,5] := 6;
+	 solucion[9,6] := 3;
+	 solucion[9,7] := 4;
+	 solucion[9,8] := 1;
+	 solucion[9,9] := 9;
+	 end;
   end;
 end;
-
 //CREAMOS UNA FUNCION Y UN PROCEDIMIENTO PARA VERIFICAR QUE LA CELDA SELECCIONADA ES UNA PISTA O NO
 
 function es_una_pista(i, j: integer): boolean;
@@ -121,7 +203,7 @@ end;
 function ya_se_encuentra_en_la_fila(tablero: matriz; f,num: integer):boolean;
 var 
   c: integer;
-begin 
+begin
 	for c := 1 to columnas do
 		if tablero[f,c]=num then
 			begin
@@ -192,7 +274,7 @@ begin
 	
 //VERIFICAMOS SI LA CELDA CORRESPONDE A UNA PISTA
 
-	if solucion[i,j] <> 0 then
+	if tablero[i,j] <> 0 then
 	begin
 		writeln('No se puede modificar una pista');
 		exit;
@@ -205,7 +287,7 @@ begin
 				begin
 					textcolor(white);
 					tablero[i,j] := num;
-					mostrarTablero(tablero, solucion);
+					mostrarTablero(tablero);
 				end
 				else 
 					writeln('Numero invalido. Por favor, ingrese un numero del 1 al 9.')
@@ -215,7 +297,7 @@ begin
 					writeln('Movimiento invalido. Por favor, intente nuevamente')
 				else
 					writeln('Movimiento invalido. Por favor, intente nuevamente');
-
+					
 	while not rendirse do
 	begin
 		textcolor(red);
@@ -231,6 +313,8 @@ begin
 			writeln('Te has rendido. Fin del juego!');
 			writeln('------------------------------');
 			writeln('La solucion del tablero es:');
+			inicioPistas(solucion, tablero);
+			mostrarTablero(solucion);
 			exit;
 		end;
 		end;
@@ -293,22 +377,22 @@ begin
 			writeln('---------------------------------------');
 			writeln('Que empiece el juego!');
 			writeln('---------------------------------------');
-			
 			textcolor(white);
 			inicioPistas(tablero, solucion);
-			mostrarTablero(tablero, solucion);
+			mostrarTablero(tablero);
 			ingresarNumero(tablero, solucion);
 			
 		end
 		else if op <>2 then
 			writeln('la opcion selecionada es invalida, por favor seleccione una opcion valida.');
 		until op=2;
-		
 		begin
 			textcolor(yellow);
 			writeln('----------------------------------------');
 			writeln('Gracias por su visita, hasta pronto');
 			writeln('----------------------------------------');
+			inicioPistas(solucion, tablero);
+			mostrarTablero(solucion);
 		end;
   
   
