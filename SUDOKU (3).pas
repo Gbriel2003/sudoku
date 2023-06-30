@@ -298,17 +298,20 @@ begin
 				else
 					writeln('Movimiento invalido. Por favor, intente nuevamente');
 					
-	while not rendirse do
-	begin
+//MOSTRAMOS LA OPCION RENDIRSE
+	
 		textcolor(red);
 		write('Deseas rendirte? (Si o no): ');
 		readln(resp);
 	
-		if (resp = 'si') or (resp = 'no') then
-			rendirse := true;
-	
+		if (resp = 'si') then
+			rendirse := true
+		else 
+			rendirse := false;
+			
 		if resp = 'si' then
 		begin
+			clrscr;
 			writeln('------------------------------');
 			writeln('Te has rendido. Fin del juego!');
 			writeln('------------------------------');
@@ -317,16 +320,16 @@ begin
 			mostrarTablero(solucion);
 			exit;
 		end;
-		end;
 
 // VERIFICAMOS QUE EL TABLERO ESTE COMPLETADO
 
-			completado := true;
+		completado := true;
 			for i := 1 to filas do
 				for j := 1 to columnas do
 					if tablero[i,j] = 0 then
 					completado := false;
 	end;
+	
 	textcolor(yellow);
 	writeln('--------------------------------------');
 	writeln('FELICITACIONES! HA CULMINADO EL JUEGO.');
@@ -392,6 +395,8 @@ begin
 			writeln('Gracias por su visita, hasta pronto');
 			writeln('----------------------------------------');
 		end;
-  
-  
 end.
+
+{Elaborado por:
+	Paola Marquez. C.I: 27.125.784
+	Gabriel Cardona. C.I: 29.789.024}
