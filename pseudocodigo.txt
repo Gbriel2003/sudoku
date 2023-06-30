@@ -283,7 +283,8 @@ inicio
 	si tablero[i,j] <> 0 entonces
 	inicio
 		escribir('No se puede modificar una pista');
-		salir;
+		inicioPistas(tablero, solucion);
+		mostrarTablero(tablero);
 	fin inicio;
 	
 	si rangoPermitido(num) entonces
