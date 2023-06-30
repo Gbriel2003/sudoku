@@ -277,7 +277,7 @@ begin
 	if tablero[i,j] <> 0 then
 	begin
 		writeln('No se puede modificar una pista');
-		exit;
+  		mostrarTablero(tablero);
 	end;
 	
 	if rangoPermitido(num) then
