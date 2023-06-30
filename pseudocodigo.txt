@@ -19,7 +19,7 @@ Algoritmo sudoku;
 
 //Procedimiento para mostrar tablero
 
-procedimiento mostrarTablero(tablero, solucion: matriz)
+procedimiento mostrarTablero(matriz: matriz)
     variable i, j entero
 
     escribir('------------------------')
@@ -55,8 +55,10 @@ fin procedimiento
     Inicio
       Para i <- 1 hasta filas hacer
         Para j <- 1 hasta columnas hacer
+        inicio
           tablero[i, j] <- 0
           solucion[i, j] <- 0
+        fin inicio
         Fin Para
       Fin Para
       
@@ -98,59 +100,142 @@ fin procedimiento
         tablero[9, 2] <- 7
         tablero[9, 3] <- 5
         tablero[9, 4] <- 2
-      Fin Para
-    Fin Procedimiento
-
+	  begin
+	 solucion[1,1] <- 2;
+	 solucion[1,2] <- 5;
+	 solucion[1,3] <- 7;
+	 solucion[1,4] <- 8;
+	 solucion[1,5] <- 4;
+	 solucion[1,6] <- 1;
+	 solucion[1,7] <- 6;
+	 solucion[1,8] <- 9;
+	 solucion[1,9] <- 3;
+	 solucion[2,1] <- 6;
+	 solucion[2,2] <- 4;
+	 solucion[2,3] <- 9;
+	 solucion[2,4] <- 5;
+	 solucion[2,5] <- 3;
+	 solucion[2,6] <- 7;
+	 solucion[2,7] <- 2;
+	 solucion[2,8] <- 8;
+	 solucion[2,9] <- 1;
+	 solucion[3,1] <- 3;
+	 solucion[3,2] <- 1;
+	 solucion[3,3] <- 8;
+	 solucion[3,4] <- 6;
+	 solucion[3,5] <- 2;
+	 solucion[3,6] <- 9;
+	 solucion[3,7] <- 5;
+	 solucion[3,8] <- 4;
+	 solucion[3,9] <- 7;
+	 solucion[4,1] <- 5;
+	 solucion[4,2] <- 9;
+	 solucion[4,3] <- 2;
+	 solucion[4,4] <- 1;
+	 solucion[4,5] <- 7;
+	 solucion[4,6] <- 6;
+	 solucion[4,7] <- 8;
+	 solucion[4,8] <- 3;
+	 solucion[4,9] <- 4;
+	 solucion[5,1] <- 7;
+	 solucion[5,2] <- 8;
+	 solucion[5,3] <- 4;
+	 solucion[5,4] <- 3;
+	 solucion[5,5] <- 9;
+	 solucion[5,6] <- 5;
+	 solucion[5,7] <- 1;
+	 solucion[5,8] <- 2;
+	 solucion[5,9] <- 6;
+	 solucion[6,1] <- 1;
+	 solucion[6,2] <- 3;
+	 solucion[6,3] <- 6;
+	 solucion[6,4] <- 4;
+	 solucion[6,5] <- 8;
+	 solucion[6,6] <- 2;
+	 solucion[6,7] <- 9;
+	 solucion[6,8] <- 7;
+	 solucion[6,9] <- 5;
+	 solucion[7,1] <- 4;
+	 solucion[7,2] <- 6;
+	 solucion[7,3] <- 3;
+	 solucion[7,4] <- 9;
+	 solucion[7,5] <- 1;
+	 solucion[7,6] <- 8;
+	 solucion[7,7] <- 7;
+	 solucion[7,8] <- 5;
+	 solucion[7,9] <- 2;
+	 solucion[8,1] <- 9;
+	 solucion[8,2] <- 2;
+	 solucion[8,3] <- 1;
+	 solucion[8,4] <- 7;
+	 solucion[8,5] <- 5;
+	 solucion[8,6] <- 4;
+	 solucion[8,7] <- 3;
+	 solucion[8,8] <- 6;
+	 solucion[8,9] <- 8;
+	 solucion[9,1] <- 8;
+	 solucion[9,2] <- 7;
+	 solucion[9,3] <- 5;
+	 solucion[9,4] <- 2;
+	 solucion[9,5] <- 6;
+	 solucion[9,6] <- 3;
+	 solucion[9,7] <- 4;
+	 solucion[9,8] <- 1;
+	 solucion[9,9] <- 9;
+	 fin;
+  fin;
+fin;
+     
 //FUNCION PARA VERIFICAR SI LA CELDA ES UNA PISTA
 
-Funci髇 es_una_pista(i, j: entero): booleano
+Funci贸n es_una_pista(i, j: entero): booleano
   Variables:
     resultado: booleano
   Inicio
     resultado <- tablero[i, j] <> 0
     devolver resultado
-  Fin Funci髇
+  Fin Funci贸n
 
 //FUNCION PARA VERIFICAR QUE EL NUMERO ESTA DENTRO DEL RANGO PERMITIDO
 
-Funci髇 rangoPermitido(num: entero): booleano
+Funci贸n rangoPermitido(num: entero): booleano
   Inicio
     Devolver (num >= 1) y (num <= 9)
-  Fin Funci髇
+  Fin Funci贸n
 
 //FUNCION PARA SABER SI EXISTE EN LA FILA
 
-Funci髇 ya_se_encuentra_en_la_fila(tablero: matriz; f, num: entero): booleano
+Funci贸n ya_se_encuentra_en_la_fila(tablero: matriz; f, num: entero): booleano
   Variables:
     c: entero
   Inicio
     Para c <- 1 hasta columnas hacer
       Si tablero[f, c] = num entonces
         ya_se_encuentra_en_la_fila <- falso
-        salir // A馻dimos "salir" para salir del ciclo luego de encontrar el n鷐ero
+        salir // A帽adimos "salir" para salir del ciclo luego de encontrar el n煤mero
       Fin Si
     Fin Para
     ya_se_encuentra_en_la_fila <- verdadero
-  Fin Funci髇
+  Fin Funci贸n
 
 //FUNCION PARA SABER SI EXISTE EN LA COLUMNA
 
-Funci髇 ya_se_encuentra_en_la_columna(tablero: matriz; c, num: entero): booleano
+Funci贸n ya_se_encuentra_en_la_columna(tablero: matriz; c, num: entero): booleano
   Variables:
     f: entero
   Inicio
     Para f <- 1 hasta filas hacer
       Si tablero[f, c] = num entonces
         ya_se_encuentra_en_la_columna <- falso
-        salir // A馻dimos "salir" para salir del ciclo luego de encontrar el n鷐ero
+        salir // A帽adimos "salir" para salir del ciclo luego de encontrar el n煤mero
       Fin Si
     Fin Para
     ya_se_encuentra_en_la_columna <- verdadero
-  Fin Funci髇
+  Fin Funci贸n
 
 //FUNCION PARA SABER SI EXISTE EN EL CUADRANTE
 
-Funci髇 ya_se_encuentra_en_el_cuadrante(tablero: matriz; filas, columnas, num: entero): booleano
+Funci贸n ya_se_encuentra_en_el_cuadrante(tablero: matriz; filas, columnas, num: entero): booleano
   Variables:
     cuadrante_fila, cuadrante_columna, i, j: entero
   Inicio
@@ -160,12 +245,12 @@ Funci髇 ya_se_encuentra_en_el_cuadrante(tablero: matriz; filas, columnas, num: e
       Para j <- ((cuadrante_columna - 1) * cuadrantes) + 1 hasta cuadrante_columna * cuadrantes hacer
         Si tablero[i, j] = num entonces
           ya_se_encuentra_en_el_cuadrante <- falso
-          salir // A馻dimos "salir" para salir del ciclo luego de encontrar el n鷐ero
+          salir // A帽adimos "salir" para salir del ciclo luego de encontrar el n煤mero
         Fin Si
       Fin Para
     Fin Para
     ya_se_encuentra_en_el_cuadrante <- verdadero
-  Fin Funci髇
+  Fin Funci贸n
 
 //PROCEDIMIENTO PARA PERMITIR QUE EL USUARIO INGRESE NUMEROS EN LAS CELDAS
 
@@ -191,11 +276,11 @@ inicio
 	escribir('..............................');
 	escribir('Ingrese un numero valido (1-9): ');
 	leer(num);
-	clrscr;
+	limpiar pantalla;
 	
 //VERIFICAMOS SI LA CELDA CORRESPONDE A UNA PISTA
 
-	si solucion[i,j] <> 0 entonces
+	si tablero[i,j] <> 0 entonces
 	inicio
 		escribir('No se puede modificar una pista');
 		salir;
@@ -208,7 +293,7 @@ inicio
 				inicio
 					cambioColorTexto(blanco);
 					tablero[i,j] <- num;
-					mostrarTablero(tablero, solucion);
+					mostrarTablero(tablero);
 				fin inicio
 				sino
 					escribir('Numero invalido. Por favor, ingrese un numero del 1 al 9.')
@@ -218,15 +303,16 @@ inicio
 					escribir('Movimiento invalido. Por favor, intente nuevamente')
 				sino
 					escribir('Movimiento invalido. Por favor, intente nuevamente');
+//MOSTRAMOS OPCION RENDIRSE
 
-	mientras no rendirse hacer
-	inicio
 		cambioColorTexto(rojo);
 		escribir('Deseas rendirte? (Si o no): ');
 		leer(resp);
 	
-		si (resp = 'si') o (resp = 'no') entonces
+		si (resp = 'si') entonces
 			rendirse := verdadero;
+                sino
+                        rendirse := falso;
 	
 		si resp = 'si' entonces
 		inicio
@@ -234,9 +320,10 @@ inicio
 			escribir('Te has rendido. Fin del juego!');
 			escribir('------------------------------');
 			escribir('La solucion del tablero es:');
+                        inicioPistas(solucion, tablero);
+			mostrarTablero(solucion);
 			salir;
-		fin inicio;
-		fin si;
+		fin;
 
 // VERIFICAMOS QUE EL TABLERO ESTE COMPLETADO
 
@@ -299,7 +386,7 @@ inicio
 			
 			cambioColorTexto(blanco);
 			inicioPistas(tablero, solucion);
-			mostrarTablero(tablero, solucion);
+			mostrarTablero(tablero);
 			ingresarNumero(tablero, solucion);
 			
 		fin inicio
@@ -316,4 +403,3 @@ inicio
   
   
 fin algoritmo.
-
