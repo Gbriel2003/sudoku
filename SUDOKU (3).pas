@@ -277,6 +277,7 @@ begin
 	if tablero[i,j] <> 0 then
 	begin
 		writeln('No se puede modificar una pista');
+  		inicioPistas(tablero, solucion);
   		mostrarTablero(tablero);
 	end;
 	
